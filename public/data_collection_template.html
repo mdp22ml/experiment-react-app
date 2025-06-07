@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Collection Template</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f0f4f8;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            max-width: 800px;
+            width: 100%;
+        }
+        h1 {
+            color: #2d3748;
+            margin-top: 0;
+        }
+        .info {
+            margin-bottom: 30px;
+            padding: 15px;
+            background-color: #ebf8ff;
+            border-left: 4px solid #4299e1;
+            border-radius: 4px;
+        }
+        .download-btn {
+            display: inline-block;
+            background-color: #4caf50;
+            color: white;
+            padding: 12px 24px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 600;
+            margin-top: 20px;
+            transition: background-color 0.3s;
+        }
+        .download-btn:hover {
+            background-color: #388e3c;
+        }
+        .template-preview {
+            margin-top: 30px;
+            border: 1px solid #e2e8f0;
+            border-collapse: collapse;
+            width: 100%;
+        }
+        .template-preview th, .template-preview td {
+            border: 1px solid #e2e8f0;
+            padding: 8px 12px;
+            text-align: left;
+        }
+        .template-preview th {
+            background-color: #f7fafc;
+            font-weight: 600;
+        }
+        .template-preview tr:nth-child(even) {
+            background-color: #f9fafb;
+        }
+        .section {
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Experimental Data Collection Template</h1>
+        
+        <div class="info">
+            <p><strong>Instructions:</strong> This page provides a downloadable Excel template for collecting and organizing your experimental data. The template includes sections for hypothesis data, measurements, and results.</p>
+            <p>Click the button below to download the Excel template file.</p>
+        </div>
+        
+        <a href="data:application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;base64,UEsDBBQAAAAIAAC4h1bwzoFbKAAAADkAAAAQAAAAZG9jUHJvcHMvYXBwLnhtbG2MzQrCMBCE4buQ95jmLtsmECTpRfB1wp5C2KQlOzXZLf57i3j1NsN8MFPXhzPZ4MjReCe5VJkE5NSZ1ruD5G8vWbQLXt4eQGOMOHPI2GGS/Bwjrc1c8IBJEnO62tPZTDDGhBMsg2D2GOJojIqR0JvOoXvqDkVRiuJ+IbX+l9+kqi0l39bZ/AFQSwMEFAAAAAgAALiHVgkrB6EcAQAA6QEAABEAAABkb2NQcm9wcy9jb3JlLnhtbI2RTU/DMBCE70j8h8j3Nt1KW1XNpYioOCFAolzczbpJROwNthPo32OStqSIE8e1Z2feGW96k1FVRUcezLDwCdEbs6dCwtF+fav3rLy8mJCgxhYVNKNGBGu2NU4IG1XhCJO8CLiszZuiQV0aOUwKbRsN80Dji1IoiFzPgRBSwnCKdz2+FR277EJZ4MwNpfQv7qJVLKa+np7Ba3ame+Ln1upuUww5FB1fJEg8l1eMgP9JoUhnpQ5HJXPBeHkDvHkqDYtK4KnVGEQWKDFPrXdSjyX1LEjypI3YtQ1ObygQ5MF38pNrLB4pZ5/Bn3nfPbhn1H95gnDdh9rP3mav/Px/R0mXmEDaX8H76f72YXlb/KA4JR/Xq8Xgar1cP40Op8RETuKYkZtx2MFPoriz/Aupn9S2QNqlOdpUta0RYVz/Udv9AlBLAwQUAAAACAAh8ZNWv5hKuN0AAADlAQAAEwAAAFtDb250ZW50X1R5cGVzXS54bWyVUcFKAzEQvQv+Q8jddGtBRLa9iHgU/AAxmd1G22QkE3f767ttt+xSQfA4ycybN+9N5svDaA97MMGh07wUMx6AY6+ca/ekb9Zf+QWEGMnVNKIjvYfAl8vFZ7PHlFIKUTmMgplcTLpLSV9JFbgHG8mQg0TZ4WBTotidqI7uiW5VnZ9radiBoy/BV0MBLbW0+HhRZf2SQaGDB1TVclB//18+gcALYpy1F8O8w7KJRoy/Wp0mfYsaD5kZQs7hbLpDbLI2bXU/oYOvmCevMQc15sg0sm2SSM2h9QYjtSW0XuNwJjBBQpntKKnojnqPdDyuML/3sX9Q8d25D+ynt05KqeYIjmfr6kc4wX1r2IwWaU7f57j8AlBLAwQUAAAACAAh8ZNWFFAGbk0AAACaAAAACwAAAF9yZWxzLy5yZWxzjc87DsIwDAbgvVLvoXKAKkzMFCbUJSx9HCBq06i1q9at4PYkovAQG+Oz/n+Ku/ccnLpioknSwHpdgSKflDfUa7je9tsSVCry6AIJ1mCNAXfdbhZ4ihyxNfqJg1KxxU5DzDnvEM2YPc5Sp/NMpsx1NKmhGdMr7kzz6loUBxs5Ec+0h5epe5DY/Y/ty8K0PY5X8UouwlwEJSiv0VKmEt9v/wRQSwECFAAUAAAACAAh8ZNWFFAGbk0AAACaAAAACwAAAAAAAAAAAAAAIAAAAAAAAABfcmVscy8ucmVsc1BLAQIUABQAAAAIALiHVvDOgVsoAAAAOQAAABAAAAAAAAAAAAAAAIAAlQAAAGRvY1Byb3BzL2FwcC54bWxQSwECFAAUAAAACAAh8ZNWv5hKuN0AAADlAQAAEwAAAAAAAAAAAAAAIACqAAAAW0NvbnRlbnRfVHlwZXNdLnhtbFBLAQIUABQAAAAIAAC4h1YJKwehHAEAAOkBAAARAAAAAAAAAAAAAACAAMgBAABkb2NQcm9wcy9jb3JlLnhtbFBLBQYAAAAABAAEAPQAAABGAwAAAAA=,experimentData.xlsx" class="download-btn" download>
+            Download Excel Template
+        </a>
+        
+        <div class="section">
+            <h2>Template Preview</h2>
+            <table class="template-preview">
+                <thead>
+                    <tr>
+                        <th colspan="6">Experiment Information</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Experiment Title:</strong></td>
+                        <td colspan="5">[Enter your experiment title]</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Researcher Name:</strong></td>
+                        <td colspan="2">[Enter your name]</td>
+                        <td><strong>Date:</strong></td>
+                        <td colspan="2">[Enter date]</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Hypothesis:</strong></td>
+                        <td colspan="5">[Enter your hypothesis statement]</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <table class="template-preview" style="margin-top: 20px;">
+                <thead>
+                    <tr>
+                        <th colspan="6">Hypothesis Classification</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Type:</strong></td>
+                        <td>
+                            [ ] Null hypothesis<br>
+                            [ ] Alternative hypothesis<br>
+                            [ ] Research hypothesis
+                        </td>
+                        <td><strong>Direction:</strong></td>
+                        <td>
+                            [ ] Non-directional<br>
+                            [ ] Directional (positive)<br>
+                            [ ] Directional (negative)
+                        </td>
+                        <td><strong>Complexity:</strong></td>
+                        <td>
+                            [ ] Simple<br>
+                            [ ] Complex<br>
+                            [ ] Multiple variables
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <table class="template-preview" style="margin-top: 20px;">
+                <thead>
+                    <tr>
+                        <th>Sample ID</th>
+                        <th>Group/Condition</th>
+                        <th>Variable 1</th>
+                        <th>Variable 2</th>
+                        <th>Measurement 1</th>
+                        <th>Measurement 2</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>[Group]</td>
+                        <td>[Value]</td>
+                        <td>[Value]</td>
+                        <td>[Value]</td>
+                        <td>[Value]</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>[Group]</td>
+                        <td>[Value]</td>
+                        <td>[Value]</td>
+                        <td>[Value]</td>
+                        <td>[Value]</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>[Group]</td>
+                        <td>[Value]</td>
+                        <td>[Value]</td>
+                        <td>[Value]</td>
+                        <td>[Value]</td>
+                    </tr>
+                    <tr>
+                        <td colspan="6">... Additional rows as needed ...</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <table class="template-preview" style="margin-top: 20px;">
+                <thead>
+                    <tr>
+                        <th colspan="6">Statistical Analysis Results</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Test Type:</strong></td>
+                        <td>[Statistical test]</td>
+                        <td><strong>p-value:</strong></td>
+                        <td>[p-value]</td>
+                        <td><strong>Significance:</strong></td>
+                        <td>[Yes/No]</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Effect size:</strong></td>
+                        <td>[Effect size]</td>
+                        <td><strong>Power:</strong></td>
+                        <td>[Statistical power]</td>
+                        <td><strong>Confidence level:</strong></td>
+                        <td>[% Confidence]</td>
+                    </tr>
+                    <tr>
+                        <td colspan="6"><strong>Conclusion:</strong> [Summary of findings in relation to hypothesis]</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script>
+        // This would normally be handled by the server-side to generate a real Excel file
+        // For demonstration purposes, we're using a base64-encoded empty Excel file
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Data template ready for download');
+        });
+    </script>
+</body>
+</html>

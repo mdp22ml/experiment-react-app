@@ -1,0 +1,11 @@
+Sample ID,Date,Time,Treatment Group,Measurement 1,Measurement 2,Measurement 3,Notes
+1,2025-06-01,09:00,Control,0,0,0,
+2,2025-06-01,09:15,Control,0,0,0,
+3,2025-06-01,09:30,Control,0,0,0,
+4,2025-06-01,09:45,Treatment A,0,0,0,
+5,2025-06-01,10:00,Treatment A,0,0,0,
+6,2025-06-01,10:15,Treatment A,0,0,0,
+7,2025-06-01,10:30,Treatment B,0,0,0,
+8,2025-06-01,10:45,Treatment B,0,0,0,
+9,2025-06-01,11:00,Treatment B,0,0,0,
+10,2025-06-01,11:15,Control,0,0,0,
