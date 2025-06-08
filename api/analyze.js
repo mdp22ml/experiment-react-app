@@ -17,12 +17,13 @@ export default async function handler(req, res) {
 
   try {
     const response = await openai.chat.completions.create({
-      model: "gpt-4",
+      model: "gpt-3.5-turbo", // ✅ works with all OpenAI accounts
       messages: [
-        { role: "system", content: "You are a helpful assistant for analyzing experimental data. Provide insights, summary, and suggestions." },
+        { role: "system", content: "You are a helpful assistant for analyzing experimental data." },
         { role: "user", content: query },
       ],
     });
+    
 
     const message = response.choices[0].message.content || "";
 
