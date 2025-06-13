@@ -12,7 +12,7 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: "Method not allowed" });
   }
 
-  const { experimentTitle, goal, methods, analysisTypes } = req.body;
+  const { experimentTitle, goal, methods, analysisTypes, fileContent } = req.body;
 
   if (!experimentTitle || !goal || !methods) {
     return res
@@ -20,32 +20,65 @@ export default async function handler(req, res) {
       .json({ error: "Missing required fields: experimentTitle, goal, or methods" });
   }
 
-  // —— 从这里开始 —— 构造更详细的 system+user prompt
+  // 构造系统提示
   const systemPrompt = `
-You are a world-class laboratory protocol writer.
-Your task is to produce an extremely detailed, step-by-step experimental protocol.
-Include for each section:
-- Exact quantities (with units) for every reagent/material.
-- Precise timings, temperatures, concentrations.
-- Safety precautions and critical tips.
-- Use these headings with emojis, in this order:
-  1. 🔬 What you'll need
-  2. 📋 Step-by-Step Procedure
-  3. 🧪 Data Analysis
-  4. ⚠️ Important Tips & Safety
-Always number your steps, and use bullet points where appropriate.
+You are a laboratory protocol generator.
+Your task is to generate ONLY two sections:
+1. Materials and Reagents
+2. Step-by-Step Protocol
+
+Requirements:
+- Materials section: List ALL reagents, consumables, and equipment with specific details (brand, catalog number, concentration, volumes, etc.)
+- Protocol section: Numbered steps with exact amounts, temperatures, times, and methods
+- Output must be plain text format
+- NO discussion, analysis, results, summary, or explanations
+- NO extra sections beyond Materials and Protocol
+- Be extremely specific with quantities, timings, and conditions
+
+Format exactly as:
+Materials and Reagents:
+- [Item 1 with full specifications]
+- [Item 2 with full specifications]
+...
+
+Step-by-Step Protocol:
+1. [Specific step with exact parameters]
+2. [Specific step with exact parameters]
+...
 `.trim();
 
-  const userPrompt = `
+  // 构造用户提示
+  let userPrompt;
+  
+  if (fileContent) {
+    // 如果有文件内容，优先使用文件内容
+    userPrompt = `
+Based on the uploaded protocol document, generate a detailed materials list and step-by-step protocol.
+Follow the original document's formatting, step order, and all specified parameters (volumes, temperatures, timing).
+
+Document content:
+${fileContent}
+
 Title: ${experimentTitle}
 Goal: ${goal}
-Design Rationale: ${methods}
-Analysis Types: ${
-    Array.isArray(analysisTypes) ? analysisTypes.join(", ") : analysisTypes || "Not specified"
-  }
+Methods: ${methods}
 
-Generate the protocol following the system instructions above.
+Generate only Materials and Step-by-Step Protocol sections in plain text.
 `.trim();
+  } else {
+    // 如果没有文件内容，基于用户输入生成
+    userPrompt = `
+Generate a detailed laboratory protocol for:
+
+Title: ${experimentTitle}
+Goal: ${goal}
+Methods: ${methods}
+Analysis Types: ${Array.isArray(analysisTypes) ? analysisTypes.join(", ") : analysisTypes || "Not specified"}
+
+Generate only Materials and Step-by-Step Protocol sections in plain text.
+Include specific brands, catalog numbers, concentrations, and volumes where possible.
+`.trim();
+  }
 
   try {
     const completion = await openai.chat.completions.create({
@@ -54,8 +87,8 @@ Generate the protocol following the system instructions above.
         { role: "system", content: systemPrompt },
         { role: "user", content: userPrompt },
       ],
-      temperature: 0.7,
-      max_tokens: 2000,
+      temperature: 0.3, // 降低温度以获得更一致的输出
+      max_tokens: 2500, // 增加token数以容纳更详细的协议
     });
 
     const protocolText = completion.choices[0].message.content;
@@ -64,5 +97,4 @@ Generate the protocol following the system instructions above.
     console.error("OpenAI API error in /api/generateProtocol:", error);
     return res.status(500).json({ error: "Failed to generate protocol" });
   }
-  // —— 到这里结束 —— 
 }
